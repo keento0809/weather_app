@@ -29,6 +29,7 @@ async function forecastNextFiveDays() {
         <div key=${index} style="padding:1rem;">
             <p>${day.dt_txt.split(" ")[0]}</p>
             <p>${day.weather[0].description}</p>
+            <p>${parseInt(day.main.temp).toFixed(1)} ℃</p>
             <img src="http://openweathermap.org/img/wn/${
               day.weather[0].icon
             }@2x.png" />
