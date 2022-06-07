@@ -8,19 +8,26 @@
     <title>Document</title>
   </head>
   <body>
-    <input type="text" id="pac-input" />
+    <input type="text" id="pac-input"/>
+    <!-- <input type="text" id="inputB"> -->
+    <input type="submit" value="Submit" class="submitValue">
+    <div id="currentWeather">
+      <h1 class="cityName"></h1>
+      <p class="description"></p>
+      <p class="temperature"></p>
+    </div>
     <div id="fiveDays"></div>
     <div id="threeHour"></div>
-
-    <script type="text/javascript" src="./apikeys.js"></script>
+<!-- 
+    <script type="text/javascript" src="./apikeys.js"></script> -->
     <!-- <script src="./apikeys.js"></script> -->
-    <script src="js/index.js"></script>
+    <!-- <script src="js/index.js"></script> -->
     <script src="js/current-weather.js"></script>
     <script
       async
       src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDobnqn-Pvo_YRwyMAC1KZDPRqANYgK91U&libraries=places&callback=googleApi"
     ></script>
     <script src="js/google-api.js"></script>
-    <script src="./js/forecast5days.js"></script>
+    <!-- <script src="./js/forecast5days.js"></script> -->
   </body>
 </html>
