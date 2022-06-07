@@ -3,9 +3,19 @@ const WEATHER_API_KEY = config.apiKeyForForecastNextFiveDays;
 const fiveDays = document.querySelector("#fiveDays");
 const threeHour = document.querySelector("#threeHour");
 
+const inputValue = document.getElementById("pac-input");
+
 async function forecastNextFiveDays() {
+  const location = await fetch(
+    `https://api.openweathermap.org/data/2.5/weather?q=${inputValue.value}&appid=${WEATHER_API_KEY}`
+  );
+  const locationForWeather = await location.json();
+  const latlon = {
+    lat: locationForWeather.coord.lat,
+    lon: locationForWeather.coord.lon,
+  };
   const weather = await fetch(
-    `https://api.openweathermap.org/data/2.5/forecast?lat=35&lon=139&appid=${WEATHER_API_KEY}&units=metric`
+    `https://api.openweathermap.org/data/2.5/forecast?lat=${latlon.lat}&lon=${latlon.lon}&appid=${WEATHER_API_KEY}&units=metric`
   );
   const data = await weather.json();
   console.log(data.list);
@@ -30,6 +40,7 @@ async function forecastNextFiveDays() {
       return `
         <div key=${index} style="padding:1rem;">
             <p>Data: ${day.dt_txt.split(" ")[0].replace(/-/g, "/").slice(5)}</p>
+            <p>${day.weather[0].description}</p>
             <p>Temp: ${parseInt(day.main.temp).toFixed(1)} ℃</p>
             High: <span>${parseInt(day.main.temp_max).toFixed(
               1
