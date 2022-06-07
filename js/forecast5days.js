@@ -6,8 +6,11 @@ const threeHour = document.querySelector("#threeHour");
 const inputValue = document.getElementById("pac-input");
 
 async function forecastNextFiveDays() {
+  console.log(Boolean(inputValue.value));
   const location = await fetch(
-    `https://api.openweathermap.org/data/2.5/weather?q=${inputValue.value}&appid=${WEATHER_API_KEY}`
+    `https://api.openweathermap.org/data/2.5/weather?q=${
+      inputValue.value ? inputValue : "Vancouver"
+    }&appid=${WEATHER_API_KEY}`
   );
   const locationForWeather = await location.json();
   const latlon = {
@@ -87,3 +90,5 @@ async function forecastNextFiveDays() {
   threeHour.innerHTML = threeHourGapContent;
 }
 forecastNextFiveDays();
+
+// window.addEventListener("DOMContentLoaded",function())
