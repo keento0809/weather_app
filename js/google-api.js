@@ -1,11 +1,11 @@
 function googleApi() {
   const input = document.getElementById("pac-input");
-  const autocomplete = new google.maps.places.Autocomplete(input);
   const options = {
-    componentRestrictions: { country: "us" },
+    componentRestrictions: { country: "ca" },
+    types: ["(cities)"],
     fields: ["address_components", "geometry", "icon", "name"],
-    types: ["establishment"],
   };
+  const autocomplete = new google.maps.places.Autocomplete(input, options);
 
   // const handleCheckPlace = () => {
   //   const test = autocomplete.getPlace();
