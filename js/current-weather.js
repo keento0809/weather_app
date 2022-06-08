@@ -1,6 +1,5 @@
 // // Get DOM
-import CURRENT_WEATHER from "./apikeys.js";
-// const  = config.apiKeyForForecastNextFiveDays;
+import CURRENT_WEATHER from "../apikeys.js";
 
 const submitBtn = document.querySelector(".submitValue");
 const inputValue = document.getElementById("pac-input");
@@ -138,7 +137,7 @@ window.addEventListener("DOMContentLoaded", () => {
   cityName.textContent = "Vancouver";
   currentCity = "Vancouver";
   document.getElementById("starIcon").style.display = "block";
-  fetchCurrentCity(currentCity)
+  fetchCurrentCity(currentCity);
 
   // check if data exists in localStorage or not
   const citiesFromLocalStorage = localStorage.getItem("favoriteCities");
@@ -185,3 +184,15 @@ function handleChangeCurrentWeather(e) {
 
 starIcon.addEventListener("click", handleAddFavorite);
 selected.addEventListener("change", handleChangeCurrentWeather);
+
+function handleTesting(e) {
+  if (e.keyCode === 13) {
+    // console.log(inputValue.value);
+    const enteredCity = inputValue.value.split(",")[0];
+    fetchCurrentCity(enteredCity);
+    forecastNextFiveDays(enteredCity);
+  }
+}
+
+// inputValue.addEventListener("change", handleTesting);
+window.addEventListener("keyup", handleTesting);
