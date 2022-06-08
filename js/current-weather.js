@@ -1,6 +1,5 @@
 // // Get DOM
-// // import CURRENT_WEATHER from "./apikeys.js";
-const WEATHER_API_KEY = config.apiKeyForForecastNextFiveDays;
+import CURRENT_WEATHER from "../apikeys.js";
 
 const submitBtn = document.querySelector(".submitValue");
 const inputValue = document.getElementById("pac-input");
@@ -20,7 +19,7 @@ async function fetchCurrentCity(val) {
     return;
   }
   const weather = await fetch(
-    `https://api.openweathermap.org/data/2.5/weather?q=${val}&appid=${WEATHER_API_KEY}&units=metric`
+    `https://api.openweathermap.org/data/2.5/weather?q=${val}&appid=${CURRENT_WEATHER}&units=metric`
   );
   const data = await weather.json();
 
@@ -52,7 +51,7 @@ async function forecastNextFiveDays(locationData) {
   const location = await fetch(
     `https://api.openweathermap.org/data/2.5/weather?q=${
       locationData ? locationData : "Vancouver"
-    }&appid=${WEATHER_API_KEY}`
+    }&appid=${CURRENT_WEATHER}`
   );
   const locationForWeather = await location.json();
   const latlon = {
@@ -60,7 +59,7 @@ async function forecastNextFiveDays(locationData) {
     lon: locationForWeather.coord.lon,
   };
   const weather = await fetch(
-    `https://api.openweathermap.org/data/2.5/forecast?lat=${latlon.lat}&lon=${latlon.lon}&appid=${WEATHER_API_KEY}&units=metric`
+    `https://api.openweathermap.org/data/2.5/forecast?lat=${latlon.lat}&lon=${latlon.lon}&appid=${CURRENT_WEATHER}&units=metric`
   );
   const data = await weather.json();
 
@@ -79,7 +78,7 @@ async function forecastNextFiveDays(locationData) {
     .map((day, index) => {
       return `
         <div key=${index} style="padding:1rem;">
-            <p>Data: ${day.dt_txt.split(" ")[0].replace(/-/g, "/").slice(5)}</p>
+            <p>Date: ${day.dt_txt.split(" ")[0].replace(/-/g, "/").slice(5)}</p>
             <p>${day.weather[0].description}</p>
             <p>Temp: ${parseInt(day.main.temp).toFixed(1)} ℃</p>
             High: <span>${parseInt(day.main.temp_max).toFixed(
@@ -140,6 +139,7 @@ window.addEventListener("DOMContentLoaded", () => {
   cityName.textContent = "Vancouver";
   currentCity = "Vancouver";
   document.getElementById("starIcon").style.display = "block";
+  fetchCurrentCity(currentCity);
 
   // check if data exists in localStorage or not
   const citiesFromLocalStorage = localStorage.getItem("favoriteCities");
@@ -186,3 +186,15 @@ function handleChangeCurrentWeather(e) {
 
 starIcon.addEventListener("click", handleAddFavorite);
 selected.addEventListener("change", handleChangeCurrentWeather);
+
+function handleTesting(e) {
+  if (e.keyCode === 13) {
+    // console.log(inputValue.value);
+    const enteredCity = inputValue.value.split(",")[0];
+    fetchCurrentCity(enteredCity);
+    forecastNextFiveDays(enteredCity);
+  }
+}
+
+// inputValue.addEventListener("change", handleTesting);
+window.addEventListener("keyup", handleTesting);
