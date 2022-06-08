@@ -1,3 +1,48 @@
+* {
+  margin: 0;
+  padding: 0;
+}
+
+button {
+  background-color: transparent;
+  border: none;
+}
+
+body {
+  background-image: url(/img/sky.jpeg);
+  background-size: cover;
+  background-attachment: fixed;
+}
+
+nav {
+  height: 60px;
+  background-color: #1A5E99;
+}
+
+#currentWeather {
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  padding: 20px 0;
+}
+
+#fiveDays {
+  display: flex;
+  justify-content: center;
+  text-align: center;
+}
+#fiveDays .wheather {
+  background-color: rgba(255, 255, 255, 0.5);
+  padding: 16px 46px;
+  margin: 0 10px;
+}
+
+#threeHour {
+  display: flex;
+  justify-content: center;
+  text-align: center;
+}
+
 .currentWeather {
   text-align: center;
 }

@@ -29,11 +29,11 @@ async function fetchCurrentCity(val) {
   cityName.innerHTML = nameValue;
   currentCity = nameValue;
 
-  const temperatureValue = data.main.temp;
-  temperature.innerHTML = temperatureValue;
-
   const iconValue = data.weather[0].icon;
   weatherIcon.innerHTML = `<img src="http://openweathermap.org/img/wn/${iconValue}@2x.png">`;
+
+  const temperatureValue = data.main.temp;
+  temperature.innerHTML = temperatureValue;
 
   const descriptionValue = data.weather[0].description;
   description.innerHTML = descriptionValue;
@@ -77,21 +77,19 @@ async function forecastNextFiveDays(locationData) {
   const fiveDaysContent = dataForNextFiveDays
     .map((day, index) => {
       return `
-        <div key=${index} style="padding:1rem;">
-            <p>Date: ${day.dt_txt.split(" ")[0].replace(/-/g, "/").slice(5)}</p>
-            <p>${day.weather[0].description}</p>
-            <p>Temp: ${parseInt(day.main.temp).toFixed(1)} ℃</p>
-            High: <span>${parseInt(day.main.temp_max).toFixed(
-              1
-            )} ℃</span> / Low: <span>${parseInt(day.main.temp_min).toFixed(
-        1
-      )} ℃</span>
-            <div>
-                <span>Humid: ${parseInt(day.main.humidity).toFixed(1)} %</span>
-            </div>
+        <div class="wheather" key=${index}>
             <img src="http://openweathermap.org/img/wn/${
               day.weather[0].icon
             }@2x.png" />
+            <p> ${day.dt_txt.split(" ")[0].replace(/-/g, "/").slice(5)}</p>
+            <p>${day.weather[0].description}</p>
+            <p>${parseInt(day.main.temp).toFixed(1)} ℃</p>
+            <span>${parseInt(day.main.temp_max).toFixed(
+              1
+            )} ℃</span> / <span>${parseInt(day.main.temp_min).toFixed(
+        1
+      )} ℃</span>
+     
         </div>
       `;
     })
@@ -102,6 +100,9 @@ async function forecastNextFiveDays(locationData) {
     .map((data, index) => {
       return `
         <div key=${index} style="padding:1rem;">
+        <img src="http://openweathermap.org/img/wn/${
+          data.weather[0].icon
+        }@2x.png" />
         <p>Time: ${data.dt_txt.split(" ")[1].slice(0, 5)}</p>
         <p>Temp: ${parseInt(data.main.temp).toFixed(1)} ℃</p>
         High: <span>${parseInt(data.main.temp_max).toFixed(
@@ -112,9 +113,6 @@ async function forecastNextFiveDays(locationData) {
         <div>
             <span>Humid: ${parseInt(data.main.humidity).toFixed(1)} %</span>
         </div>
-        <img src="http://openweathermap.org/img/wn/${
-          data.weather[0].icon
-        }@2x.png" />
         </div>
       `;
     })

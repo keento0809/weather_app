@@ -8,39 +8,41 @@
     <title>Document</title>
   </head>
   <body>
-    <input type="text" id="pac-input" />
-    <input type="submit" value="Submit" class="submitValue" />
-    <select name="Favorites" id="favorites" value="Favorites"></select>
+    <nav>
+          <input type="text" id="pac-input" />
+          <input type="submit" value="Submit" class="submitValue" />
+      
+          <select name="Favorites" id="favorites" value="Favorites"></select>
+    </nav>
+
     <div id="currentWeather">
       <button id="starIcon"><i class="far fa-star"></i></button>
       <!-- <button id=""><i class="fa-solid fa-star"></i></button> -->
       <h1 class="cityName"></h1>
+      <div class="weatherIcon"></div>
       <p class="description"></p>
       <p class="temperature"></p>
-      <div class="weatherIcon"></div>
     </div>
 
     <div id="fiveDays"></div>
     <div id="threeHour"></div>
-    <!-- 
-    <script type="text/javascript" src="./apikeys.js"></script> -->
+    
+    <!-- <script type="text/javascript" src="./apikeys.js"></script> -->
     <script type="module" src="./apikeys.js"></script>
-    <!-- <script src="js/index.js"></script> -->
+    <script type="module" src="js/current-weather.js"></script>
 
     <!-- async -->
     <!-- original -->
-    <!-- <script
-      async
-      src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDobnqn-Pvo_YRwyMAC1KZDPRqANYgK91U&libraries=places&callback=googleApi"
-      ></script> -->
-
     <script
       async
-      src="https://maps.googleapis.com/maps/api/js?key=AIzaSyC3Ktq70fpT_yWvh2CzrvbXESv98xYtg1g&libraries=places&callback=googleApi"
+      src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDobnqn-Pvo_YRwyMAC1KZDPRqANYgK91U&libraries=places&callback=googleApi"
     ></script>
-    <script type="module" src="js/current-weather.js"></script>
-    <script type="" src="js/google-api.js"></script>
-    <!-- <script src="./js/forecast5days.js"></script> -->
+
+    <script src="js/google-api.js"></script>
+    <!-- <script
+      async
+      src="https://maps.googleapis.com/maps/api/js?key=AIzaSyC3Ktq70fpT_yWvh2CzrvbXESv98xYtg1g&libraries=places&callback=googleApi"
+    ></script> -->
     <script
       src="https://kit.fontawesome.com/40b1889db0.js"
       crossorigin="anonymous"
