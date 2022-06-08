@@ -1,7 +1,7 @@
 function googleApi() {
   const input = document.getElementById("pac-input");
   const options = {
-    componentRestrictions: { country: "ca" },
+    // componentRestrictions: { country: "us" },
     types: ["(cities)"],
     fields: ["address_components", "geometry", "icon", "name"],
   };
