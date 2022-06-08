@@ -3,9 +3,22 @@ const WEATHER_API_KEY = config.apiKeyForForecastNextFiveDays;
 const fiveDays = document.querySelector("#fiveDays");
 const threeHour = document.querySelector("#threeHour");
 
+const inputValue = document.getElementById("pac-input");
+
 async function forecastNextFiveDays() {
+  console.log(Boolean(inputValue.value));
+  const location = await fetch(
+    `https://api.openweathermap.org/data/2.5/weather?q=${
+      inputValue.value ? inputValue : "Vancouver"
+    }&appid=${WEATHER_API_KEY}`
+  );
+  const locationForWeather = await location.json();
+  const latlon = {
+    lat: locationForWeather.coord.lat,
+    lon: locationForWeather.coord.lon,
+  };
   const weather = await fetch(
-    `https://api.openweathermap.org/data/2.5/forecast?lat=35&lon=139&appid=${WEATHER_API_KEY}&units=metric`
+    `https://api.openweathermap.org/data/2.5/forecast?lat=${latlon.lat}&lon=${latlon.lon}&appid=${WEATHER_API_KEY}&units=metric`
   );
   const data = await weather.json();
   console.log(data.list);
@@ -23,12 +36,23 @@ async function forecastNextFiveDays() {
   }
   console.log(dataForThreeHourGap);
 
+  // <p>${day.weather[0].description}</p>
+
   const fiveDaysContent = dataForNextFiveDays
     .map((day, index) => {
       return `
         <div key=${index} style="padding:1rem;">
-            <p>${day.dt_txt.split(" ")[0]}</p>
+            <p>Data: ${day.dt_txt.split(" ")[0].replace(/-/g, "/").slice(5)}</p>
             <p>${day.weather[0].description}</p>
+            <p>Temp: ${parseInt(day.main.temp).toFixed(1)} ℃</p>
+            High: <span>${parseInt(day.main.temp_max).toFixed(
+              1
+            )} ℃</span> / Low: <span>${parseInt(day.main.temp_min).toFixed(
+        1
+      )} ℃</span>
+            <div>
+                <span>Humid: ${parseInt(day.main.humidity).toFixed(1)} %</span>
+            </div>
             <img src="http://openweathermap.org/img/wn/${
               day.weather[0].icon
             }@2x.png" />
@@ -38,13 +62,27 @@ async function forecastNextFiveDays() {
     .join("");
   fiveDays.innerHTML = fiveDaysContent;
 
+  // <p>${data.dt_txt}</p>
+  //   <p>${data.weather[0].description}</p>
+  //   <img src="http://openweathermap.org/img/wn/${data.weather[0].icon}@2x.png" />
+
   const threeHourGapContent = dataForThreeHourGap
     .map((data, index) => {
       return `
         <div key=${index} style="padding:1rem;">
-            <p>${data.dt_txt}</p>
-            <p>${data.weather[0].description}</p>
-            <img src="http://openweathermap.org/img/wn/${data.weather[0].icon}@2x.png" />
+        <p>Time: ${data.dt_txt.split(" ")[1].slice(0, 5)}</p>
+        <p>Temp: ${parseInt(data.main.temp).toFixed(1)} ℃</p>
+        High: <span>${parseInt(data.main.temp_max).toFixed(
+          1
+        )} ℃</span> / Low: <span>${parseInt(data.main.temp_min).toFixed(
+        1
+      )} ℃</span>
+        <div>
+            <span>Humid: ${parseInt(data.main.humidity).toFixed(1)} %</span>
+        </div>
+        <img src="http://openweathermap.org/img/wn/${
+          data.weather[0].icon
+        }@2x.png" />
         </div>
       `;
     })
@@ -52,3 +90,5 @@ async function forecastNextFiveDays() {
   threeHour.innerHTML = threeHourGapContent;
 }
 forecastNextFiveDays();
+
+// window.addEventListener("DOMContentLoaded",function())
