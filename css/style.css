@@ -1,3 +1,7 @@
 .currentWeather {
   text-align: center;
+}
+
+#starIcon {
+  display: none;
 }/*# sourceMappingURL=style.css.map */

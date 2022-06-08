@@ -9,17 +9,16 @@
   </head>
   <body>
     <input type="text" id="pac-input" />
-    <!-- <input type="text" id="inputB"> -->
     <input type="submit" value="Submit" class="submitValue" />
+    <select name="Favorites" id="favorites" value="Favorites"></select>
     <div id="currentWeather">
+      <button id="starIcon"><i class="far fa-star"></i></button>
       <h1 class="cityName"></h1>
       <p class="description"></p>
       <p class="temperature"></p>
+      <div class="weatherIcon"></div>
     </div>
-    <!-- <select name="Favorites" id="favorites" value="Favorites">
-      <option value="">Favorites</option>
-      <option value="Kyoto">Kyoto</option>
-    </select> -->
+
     <div id="fiveDays"></div>
     <div id="threeHour"></div>
     <!-- 
@@ -29,11 +28,22 @@
     <script src="js/current-weather.js"></script>
 
     <!-- async -->
-    <script
+    <!-- original -->
+    <!-- <script
       async
       src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDobnqn-Pvo_YRwyMAC1KZDPRqANYgK91U&libraries=places&callback=googleApi"
-    ></script>
+    ></script> -->
+
     <script src="js/google-api.js"></script>
+    <script
+      async
+      src="https://maps.googleapis.com/maps/api/js?key=AIzaSyC3Ktq70fpT_yWvh2CzrvbXESv98xYtg1g&libraries=places&callback=googleApi"
+    ></script>
     <!-- <script src="./js/forecast5days.js"></script> -->
+    <script
+      src="https://kit.fontawesome.com/40b1889db0.js"
+      crossorigin="anonymous"
+    ></script>
+    <script src="./js//favorites.js"></script>
   </body>
 </html>
