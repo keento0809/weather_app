@@ -65,16 +65,18 @@ function handleAddFavorite() {
   const citiesFromLocalStorage = JSON.parse(
     localStorage.getItem("favoriteCities")
   );
-  if (citiesFromLocalStorage) {
-    let count = 0;
-    while (count < citiesFromLocalStorage.length) {
-      if (citiesFromLocalStorage[count] === currentCity) {
-        alert("You've already added this city.");
-        return;
-      }
-      count++;
-    }
-  }
+  currentCity = cityName.innerHTML;
+  console.log(currentCity);
+  // if (citiesFromLocalStorage) {
+  //   let count = 0;
+  //   while (count < citiesFromLocalStorage.length) {
+  //     if (citiesFromLocalStorage[count] === currentCity) {
+  //       alert("You've already added this city.");
+  //       return;
+  //     }
+  //     count++;
+  //   }
+  // }
   favoriteCities = [...favoriteCities, currentCity];
   localStorage.setItem("favoriteCities", JSON.stringify(favoriteCities));
   createOptions([currentCity]);
@@ -97,15 +99,15 @@ function handleRemoveFavorite() {
   alert(`${removingCity} has removed from favorites!`);
 }
 
-function handleTesting(e) {
-  if (e.keyCode === 13) {
-    const enteredCity = inputValue.value.split(",")[0];
-    fetchCurrentCity(enteredCity);
-    forecastFiveDaysAndAThreeGap(enteredCity, 0);
-    inputValue.value = "";
-  }
-}
+// function handleTesting(e) {
+//   if (e.keyCode === 13) {
+//     const enteredCity = inputValue.value.split(",")[0];
+//     fetchCurrentCity(enteredCity);
+//     forecastFiveDaysAndAThreeGap(enteredCity, 0);
+//     inputValue.value = "";
+//   }
+// }
 
-window.addEventListener("keyup", handleTesting);
+// window.addEventListener("keyup", handleTesting);
 starIcon.addEventListener("click", handleAddFavorite);
 starIconFilled.addEventListener("click", handleRemoveFavorite);

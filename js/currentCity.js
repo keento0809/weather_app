@@ -1,6 +1,7 @@
 import CURRENT_WEATHER from "../apikeys.js";
 import { checkIfFavorite } from "./index.js";
 import { forecastFiveDaysAndAThreeGap } from "./forecast.js";
+import { handleTesting } from "./checkKeyCode.js";
 
 const cityName = document.querySelector(".cityName");
 const description = document.querySelector(".description");
@@ -45,3 +46,4 @@ function handleChangeCurrentWeather(e) {
 }
 
 selected.addEventListener("change", handleChangeCurrentWeather);
+window.addEventListener("keyup", handleTesting);
