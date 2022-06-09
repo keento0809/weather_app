@@ -1,16 +1,3 @@
-* {
-  margin: 0;
-  padding: 0;
-  font-family: "Poppins";
-}
-
-body {
-  background-image: url(/img/sky.jpeg);
-  background-size: cover;
-  background-attachment: fixed;
-  padding-bottom: 20px;
-}
-
 nav{
     height: 60px;
     background-color: #1A5E99;
@@ -23,7 +10,6 @@ nav{
         height: 80px;
         justify-content: center;
         gap: 6px;
-
     }
     justify-content: space-between;
     .pac-target-input{
@@ -40,6 +26,11 @@ nav{
         padding: 0 10px;
         text-transform: uppercase;
         cursor: pointer;
+        transition: all 0.7s ease;
+        &:hover{
+            background-color: #01315B;
+            color: white;
+        }
     }
     #favorites{
     height: 30px;
@@ -61,14 +52,22 @@ h1 {
 }
 
 #starIcon {
-  cursor: pointer;
-  font-size: 30px;
-}
-
-button {
-  background-color: transparent;
-  border: none;
-}
+    display: none;
+    cursor: pointer;
+    font-size: 14px;
+    background-color: #00315b;
+    color: white;
+    padding: 5px 10px;
+  }
+  
+  #starIconFilled {
+    display: none;
+    cursor: pointer;
+    font-size: 14px;
+    color: #00315b;
+    background-color: white;
+    padding: 5px 10px;
+  }
 
 #currentWeather{
     display: flex;
@@ -88,26 +87,6 @@ button {
         text-align: center; 
         min-width: 110px;
         min-height: 110px;
-    }
-}
-
-#fiveDays{
-    display: flex;
-    justify-content: center;
-    text-align: center;
-    @media only screen and (max-width: 375px) {
-        flex-direction: column;
-        gap: 10px;
-    }
-    .wheather{
-        background-color: #fcd291c9;
-        padding: 16px 46px;
-        margin: 0 10px;
-        border-radius: 50px 0;
-        @media only screen and (max-width: 375px) {
-            padding: 10px;
-            margin: 0 55px;
-        } 
     }
 }
 
@@ -146,71 +125,31 @@ hr{
     text-align: center;
 }
 
-#starIcon{
-    display: none;
-    cursor: pointer;
-    font-size: 14px;
-    background-color: #00315b;
-    border-radius: 50%;
-    text-align: center;
-  }
-}
-
 #fiveDays {
   display: flex;
   justify-content: center;
   text-align: center;
-  .wheather {
-    // background-color: rgba($color: #ffff, $alpha: 0.5);
-    background-color: #fcd291c9;
-    padding: 16px 46px;
-    margin: 0 10px;
-    border-radius: 50px 0;
+    @media only screen and (max-width: 375px) {
+        flex-direction: column;
+        gap: 10px;
+    }
+    .wheather {
+        background-color: #fcd291c9;
+        padding: 16px 46px;
+        margin: 0 10px;
+        border-radius: 50px 0;
+        cursor: pointer;
+        transition: all 0.7s ease;
+        @media only screen and (max-width: 375px) {
+            padding: 10px;
+            margin: 0 50px;
+        }
+            &:hover{
+                background-color: #ffc36ac9;
+            }
   }
-}
+} 
 
-#threeHour {
-  display: flex;
-  justify-content: center;
-  text-align: center;
-  margin: 0 auto;
-  margin-top: 20px;
-  .wheather3h {
-    // background-color: rgba($color: #ffff, $alpha: 0.5);
-    background-color: #fdecc0c9;
-    border-radius: 0 50px;
-    padding: 16px 30px;
-    margin: 0 5px;
-  }
-}
 
-hr {
-  width: 85%;
-  margin: 0 auto;
-  height: 1px;
-  border: none;
-  background-color: white;
-  margin-top: 20px;
-}
 
-.currentWeather {
-  text-align: center;
-}
 
-#starIcon {
-  display: none;
-  cursor: pointer;
-  font-size: 14px;
-  background-color: #00315b;
-  color: white;
-  padding: 5px 10px;
-}
-
-#starIconFilled {
-  display: none;
-  cursor: pointer;
-  font-size: 14px;
-  color: #00315b;
-  background-color: white;
-  padding: 5px 10px;
-}

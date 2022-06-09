@@ -1,2 +1,23 @@
-@import "./vini";
-@import "./kento";
+* {
+    margin: 0;
+    padding: 0;
+    font-family: "Poppins";
+  }
+
+  :hover{
+    transition: all 0.7s ease;
+  }
+  
+  body {
+    background-image: url(/img/sky.jpeg);
+    background-size: cover;
+    background-attachment: fixed;
+    padding-bottom: 20px;
+  }
+
+  button {
+    background-color: transparent;
+    border: none;
+  }
+
+@import "./main";

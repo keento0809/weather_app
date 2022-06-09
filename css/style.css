@@ -4,6 +4,10 @@
   font-family: "Poppins";
 }
 
+:hover {
+  transition: all 0.7s ease;
+}
+
 body {
   background-image: url(/img/sky.jpeg);
   background-size: cover;
@@ -11,9 +15,14 @@ body {
   padding-bottom: 20px;
 }
 
+button {
+  background-color: transparent;
+  border: none;
+}
+
 nav {
   height: 60px;
-  background-color: #1a5e99;
+  background-color: #1A5E99;
   display: flex;
   flex-direction: row;
   align-items: center;
@@ -42,6 +51,11 @@ nav .submitValue {
   padding: 0 10px;
   text-transform: uppercase;
   cursor: pointer;
+  transition: all 0.7s ease;
+}
+nav .submitValue:hover {
+  background-color: #01315B;
+  color: white;
 }
 nav #favorites {
   height: 30px;
@@ -62,13 +76,21 @@ h1 {
 }
 
 #starIcon {
+  display: none;
   cursor: pointer;
-  font-size: 30px;
+  font-size: 14px;
+  background-color: #00315b;
+  color: white;
+  padding: 5px 10px;
 }
 
-button {
-  background-color: transparent;
-  border: none;
+#starIconFilled {
+  display: none;
+  cursor: pointer;
+  font-size: 14px;
+  color: #00315b;
+  background-color: white;
+  padding: 5px 10px;
 }
 
 #currentWeather {
@@ -91,30 +113,6 @@ button {
   text-align: center;
   min-width: 110px;
   min-height: 110px;
-}
-
-#fiveDays {
-  display: flex;
-  justify-content: center;
-  text-align: center;
-}
-@media only screen and (max-width: 375px) {
-  #fiveDays {
-    flex-direction: column;
-    gap: 10px;
-  }
-}
-#fiveDays .wheather {
-  background-color: rgba(252, 210, 145, 0.7882352941);
-  padding: 16px 46px;
-  margin: 0 10px;
-  border-radius: 50px 0;
-}
-@media only screen and (max-width: 375px) {
-  #fiveDays .wheather {
-    padding: 10px;
-    margin: 0 55px;
-  }
 }
 
 #threeHour {
@@ -156,20 +154,31 @@ hr {
   text-align: center;
 }
 
-#starIcon {
-  display: none;
-  cursor: pointer;
-  font-size: 14px;
-  background-color: #00315b;
-  color: white;
-  padding: 5px 10px;
+#fiveDays {
+  display: flex;
+  justify-content: center;
+  text-align: center;
 }
-
-#starIconFilled {
-  display: none;
+@media only screen and (max-width: 375px) {
+  #fiveDays {
+    flex-direction: column;
+    gap: 10px;
+  }
+}
+#fiveDays .wheather {
+  background-color: rgba(252, 210, 145, 0.7882352941);
+  padding: 16px 46px;
+  margin: 0 10px;
+  border-radius: 50px 0;
   cursor: pointer;
-  font-size: 14px;
-  color: #00315b;
-  background-color: white;
-  padding: 5px 10px;
+  transition: all 0.7s ease;
+}
+@media only screen and (max-width: 375px) {
+  #fiveDays .wheather {
+    padding: 10px;
+    margin: 0 50px;
+  }
+}
+#fiveDays .wheather:hover {
+  background-color: rgba(255, 195, 106, 0.7882352941);
 }/*# sourceMappingURL=style.css.map */
