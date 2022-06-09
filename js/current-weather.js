@@ -12,7 +12,7 @@ const starIconFilled = document.querySelector("#starIconFilled");
 let currentCity = "";
 let favoriteCities = [];
 
-function checkIfFavorite(val) {
+export function checkIfFavorite(val) {
   const citiesFromLocalStorage = localStorage.getItem("favoriteCities");
   favoriteCities = citiesFromLocalStorage
     ? JSON.parse(citiesFromLocalStorage)
