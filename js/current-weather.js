@@ -83,6 +83,7 @@ async function forecastNextFiveDays(locationData, span) {
     `https://api.openweathermap.org/data/2.5/forecast?lat=${latlon.lat}&lon=${latlon.lon}&appid=${CURRENT_WEATHER}&units=metric`
   );
   const data = await weather.json();
+  console.log(data);
 
   const dataForNextFiveDays = [];
   const dataForThreeHourGap = [];
@@ -91,14 +92,8 @@ async function forecastNextFiveDays(locationData, span) {
     dataForNextFiveDays.push(data.list[i]);
   }
   console.log(Number(span) + Number(span * 7));
-  const num =
-    span == "0"
-      ? Number(span) + Number(span * 7)
-      : Number(span) + Number(span * 7) - 1;
-  const area =
-    span == "0"
-      ? 8 + (Number(span * 7) + Number(span))
-      : 8 + (Number(span * 7) + Number(span)) - 1;
+  const num = Number(span) + Number(span * 7);
+  const area = 8 + (Number(span * 7) + Number(span));
   for (let i = num; i < area; i++) {
     dataForThreeHourGap.push(data.list[i]);
   }
