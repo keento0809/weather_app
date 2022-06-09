@@ -130,7 +130,6 @@ async function forecastNextFiveDays(locationData, span) {
   nextFiveDays.forEach((day) =>
     day.addEventListener("click", handleChangeDate)
   );
-  // console.log(nextFiveDays);
 
   const threeHourGapContent = dataForThreeHourGap
     .map((data, index) => {
