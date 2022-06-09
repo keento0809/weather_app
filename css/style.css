@@ -13,7 +13,7 @@ body {
 
 nav {
   height: 60px;
-  background-color: #1A5E99;
+  background-color: #1a5e99;
   display: flex;
   flex-direction: row;
   align-items: center;
@@ -162,5 +162,14 @@ hr {
   font-size: 14px;
   background-color: #00315b;
   color: white;
+  padding: 5px 10px;
+}
+
+#starIconFilled {
+  display: none;
+  cursor: pointer;
+  font-size: 14px;
+  color: #00315b;
+  background-color: white;
   padding: 5px 10px;
 }/*# sourceMappingURL=style.css.map */

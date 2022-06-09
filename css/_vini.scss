@@ -1,14 +1,14 @@
-*{
-    margin: 0;
-    padding: 0;
-    font-family: 'Poppins';
+* {
+  margin: 0;
+  padding: 0;
+  font-family: "Poppins";
 }
 
-body{
-    background-image: url(/img/sky.jpeg);
-    background-size: cover;
-    background-attachment: fixed;
-    padding-bottom: 20px;
+body {
+  background-image: url(/img/sky.jpeg);
+  background-size: cover;
+  background-attachment: fixed;
+  padding-bottom: 20px;
 }
 
 nav{
@@ -42,32 +42,32 @@ nav{
         cursor: pointer;
     }
     #favorites{
-        height: 30px;
+    height: 30px;
     outline: 0;
     border: 0;
     padding: 0 10px;
-    }
+  }
 }
 
-h1{
-    font-size: 60px;
-    line-height: 46px;
-    font-weight: 600;
+h1 {
+  font-size: 60px;
+  line-height: 46px;
+  font-weight: 600;
 }
 
-.temperature{
-    font-size: 60px;
-    font-weight: 400;
+.temperature {
+  font-size: 60px;
+  font-weight: 400;
 }
 
-#starIcon{
-    cursor: pointer;
-    font-size: 30px;
+#starIcon {
+  cursor: pointer;
+  font-size: 30px;
 }
 
-button{
-    background-color: transparent;
-    border: none;
+button {
+  background-color: transparent;
+  border: none;
 }
 
 #currentWeather{
@@ -151,6 +151,66 @@ hr{
     cursor: pointer;
     font-size: 14px;
     background-color: #00315b;
-    color: white;
-    padding: 5px 10px;
+    border-radius: 50%;
+    text-align: center;
+  }
+}
+
+#fiveDays {
+  display: flex;
+  justify-content: center;
+  text-align: center;
+  .wheather {
+    // background-color: rgba($color: #ffff, $alpha: 0.5);
+    background-color: #fcd291c9;
+    padding: 16px 46px;
+    margin: 0 10px;
+    border-radius: 50px 0;
+  }
+}
+
+#threeHour {
+  display: flex;
+  justify-content: center;
+  text-align: center;
+  margin: 0 auto;
+  margin-top: 20px;
+  .wheather3h {
+    // background-color: rgba($color: #ffff, $alpha: 0.5);
+    background-color: #fdecc0c9;
+    border-radius: 0 50px;
+    padding: 16px 30px;
+    margin: 0 5px;
+  }
+}
+
+hr {
+  width: 85%;
+  margin: 0 auto;
+  height: 1px;
+  border: none;
+  background-color: white;
+  margin-top: 20px;
+}
+
+.currentWeather {
+  text-align: center;
+}
+
+#starIcon {
+  display: none;
+  cursor: pointer;
+  font-size: 14px;
+  background-color: #00315b;
+  color: white;
+  padding: 5px 10px;
+}
+
+#starIconFilled {
+  display: none;
+  cursor: pointer;
+  font-size: 14px;
+  color: #00315b;
+  background-color: white;
+  padding: 5px 10px;
 }
