@@ -5,26 +5,36 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <link rel="stylesheet" href="css/style.css" />
-    <title>Document</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@200;400;600&display=swap" rel="stylesheet">
+    <title>Wheather APP</title>
   </head>
   <body>
     <nav>
-          <input type="text" id="pac-input" />
-          <input type="submit" value="Submit" class="submitValue" />
+      <div>
+        <input type="text" id="pac-input" />
+        <input type="submit" value="Submit" class="submitValue" />
+      </div>
       
           <select name="Favorites" id="favorites" value="Favorites"></select>
     </nav>
 
     <div id="currentWeather">
-      <button id="starIcon"><i class="far fa-star"></i></button>
-      <!-- <button id=""><i class="fa-solid fa-star"></i></button> -->
-      <h1 class="cityName"></h1>
-      <div class="weatherIcon"></div>
-      <p class="description"></p>
-      <p class="temperature"></p>
+      <div>
+        <h1 class="cityName"></h1>
+        <p class="temperature"></p>
+        <button id="starIcon">Add as favorite <i class="far fa-star"></i></button>
+        <!-- <button id=""><i class="fa-solid fa-star"></i></button> -->
+      </div>
+      <div>
+        <div class="weatherIcon"></div>
+        <p class="description"></p>
+      </div>
     </div>
 
     <div id="fiveDays"></div>
+    <hr>
     <div id="threeHour"></div>
     
     <!-- <script type="text/javascript" src="./apikeys.js"></script> -->
