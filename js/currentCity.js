@@ -1,5 +1,5 @@
 import CURRENT_WEATHER from "../apikeys.js";
-import { checkIfFavorite } from "./current-weather.js";
+import { checkIfFavorite } from "./index.js";
 import { forecastFiveDaysAndAThreeGap } from "./forecast.js";
 
 const cityName = document.querySelector(".cityName");
