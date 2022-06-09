@@ -18,6 +18,13 @@ nav{
     flex-direction: row;
     align-items: center;
     padding: 0 20px;
+    @media only screen and (max-width: 375px) {
+        flex-direction: column-reverse;
+        height: 80px;
+        justify-content: center;
+        gap: 6px;
+
+    }
     justify-content: space-between;
     .pac-target-input{
         width: 190px;
@@ -71,10 +78,16 @@ button{
     justify-content: space-evenly;
     padding: 50px 0;
     color: #00315b;
+    @media only screen and (max-width: 375px) {
+        flex-direction: column-reverse;
+
+    }
     .weatherIcon{
         background-color: #00315b;
         border-radius: 50%;
-        text-align: center;  
+        text-align: center; 
+        min-width: 110px;
+        min-height: 110px;
     }
 }
 
@@ -82,12 +95,19 @@ button{
     display: flex;
     justify-content: center;
     text-align: center;
+    @media only screen and (max-width: 375px) {
+        flex-direction: column;
+        gap: 10px;
+    }
     .wheather{
-        // background-color: rgba($color: #ffff, $alpha: 0.5);
         background-color: #fcd291c9;
         padding: 16px 46px;
         margin: 0 10px;
         border-radius: 50px 0;
+        @media only screen and (max-width: 375px) {
+            padding: 10px;
+            margin: 0 55px;
+        } 
     }
 }
 
@@ -97,12 +117,19 @@ button{
     text-align: center;
     margin: 0 auto;
     margin-top: 20px;
+    @media only screen and (max-width: 375px) {
+        flex-direction: column;
+        gap: 10px;
+    }
     .wheather3h{
-        // background-color: rgba($color: #ffff, $alpha: 0.5);
         background-color: #fdecc0c9;
         border-radius: 0 50px;
         padding: 16px 30px;
         margin: 0 5px;
+        @media only screen and (max-width: 375px) {
+            padding: 10px;
+            margin: 0 55px;
+        } 
     }
 }
 
