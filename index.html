@@ -9,14 +9,17 @@
   </head>
   <body>
     <nav>
-          <input type="text" id="pac-input" />
-          <input type="submit" value="Submit" class="submitValue" />
-      
-          <select name="Favorites" id="favorites" value="Favorites"></select>
+      <input type="text" id="pac-input" />
+      <input type="submit" value="Submit" class="submitValue" />
+
+      <select name="Favorites" id="favorites" value="Favorites"></select>
     </nav>
 
     <div id="currentWeather">
       <button id="starIcon"><i class="far fa-star"></i></button>
+      <button id="starIconFilled">
+        <i class="fas fa-star"></i>
+      </button>
       <!-- <button id=""><i class="fa-solid fa-star"></i></button> -->
       <h1 class="cityName"></h1>
       <div class="weatherIcon"></div>
@@ -26,7 +29,7 @@
 
     <div id="fiveDays"></div>
     <div id="threeHour"></div>
-    
+
     <!-- <script type="text/javascript" src="./apikeys.js"></script> -->
     <script type="module" src="./apikeys.js"></script>
     <script type="module" src="js/current-weather.js"></script>

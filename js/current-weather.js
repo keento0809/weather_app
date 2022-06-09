@@ -10,8 +10,29 @@ const weatherIcon = document.querySelector(".weatherIcon");
 
 const selected = document.querySelector("#favorites");
 
+const starIconFilled = document.querySelector("#starIconFilled");
+
 let currentCity = "";
 let favoriteCities = [];
+
+function checkIfFavorite(val) {
+  const citiesFromLocalStorage = localStorage.getItem("favoriteCities");
+  favoriteCities = citiesFromLocalStorage
+    ? JSON.parse(citiesFromLocalStorage)
+    : [];
+  console.log(favoriteCities);
+  document.getElementById("starIconFilled").style.display = "none";
+  document.getElementById("starIcon").style.display = "block";
+
+  if (favoriteCities.length > 0) {
+    for (let i = 0; i < favoriteCities.length; i++) {
+      if (favoriteCities[i] == val) {
+        document.getElementById("starIconFilled").style.display = "block";
+        document.getElementById("starIcon").style.display = "none";
+      }
+    }
+  }
+}
 
 async function fetchCurrentCity(val) {
   if (val == "") {
@@ -23,7 +44,7 @@ async function fetchCurrentCity(val) {
   );
   const data = await weather.json();
 
-  document.getElementById("starIcon").style.display = "block";
+  checkIfFavorite(val);
 
   const nameValue = data["name"];
   cityName.innerHTML = nameValue;
@@ -43,11 +64,11 @@ submitBtn.addEventListener("click", async function () {
   fetchCurrentCity(inputValue.value);
 
   const locationData = inputValue.value;
-  forecastNextFiveDays(locationData);
+  forecastNextFiveDays(locationData, 0);
 });
 
 // // test
-async function forecastNextFiveDays(locationData) {
+async function forecastNextFiveDays(locationData, span) {
   const location = await fetch(
     `https://api.openweathermap.org/data/2.5/weather?q=${
       locationData ? locationData : "Vancouver"
@@ -69,15 +90,23 @@ async function forecastNextFiveDays(locationData) {
   for (let i = 0; i < data.list.length; i += 8) {
     dataForNextFiveDays.push(data.list[i]);
   }
-
-  for (let i = 0; i < 8; i++) {
+  console.log(Number(span) + Number(span * 7));
+  const num =
+    span == "0"
+      ? Number(span) + Number(span * 7)
+      : Number(span) + Number(span * 7) - 1;
+  const area =
+    span == "0"
+      ? 8 + (Number(span * 7) + Number(span))
+      : 8 + (Number(span * 7) + Number(span)) - 1;
+  for (let i = num; i < area; i++) {
     dataForThreeHourGap.push(data.list[i]);
   }
 
   const fiveDaysContent = dataForNextFiveDays
     .map((day, index) => {
       return `
-        <div class="wheather" key=${index}>
+        <div class="wheather dayWeather" key=${index} id=${index}>
             <img src="http://openweathermap.org/img/wn/${
               day.weather[0].icon
             }@2x.png" />
@@ -96,6 +125,18 @@ async function forecastNextFiveDays(locationData) {
     .join("");
   fiveDays.innerHTML = fiveDaysContent;
 
+  function handleChangeDate() {
+    console.log(cityName.innerHTML);
+    console.log(this.id);
+    forecastNextFiveDays(cityName.innerHTML, this.id);
+  }
+
+  const nextFiveDays = document.querySelectorAll(".dayWeather");
+  nextFiveDays.forEach((day) =>
+    day.addEventListener("click", handleChangeDate)
+  );
+  // console.log(nextFiveDays);
+
   const threeHourGapContent = dataForThreeHourGap
     .map((data, index) => {
       return `
@@ -103,6 +144,7 @@ async function forecastNextFiveDays(locationData) {
         <img src="http://openweathermap.org/img/wn/${
           data.weather[0].icon
         }@2x.png" />
+        <p> ${data.dt_txt.split(" ")[0].replace(/-/g, "/").slice(5)}</p>
         <p>Time: ${data.dt_txt.split(" ")[1].slice(0, 5)}</p>
         <p>Temp: ${parseInt(data.main.temp).toFixed(1)} ℃</p>
         High: <span>${parseInt(data.main.temp_max).toFixed(
@@ -119,7 +161,7 @@ async function forecastNextFiveDays(locationData) {
     .join("");
   threeHour.innerHTML = threeHourGapContent;
 }
-forecastNextFiveDays();
+forecastNextFiveDays("", 0);
 
 function createOptions(dataArr) {
   for (let i = 0; i < dataArr.length; i++) {
@@ -172,6 +214,7 @@ function handleAddFavorite() {
   favoriteCities = [...favoriteCities, currentCity];
   localStorage.setItem("favoriteCities", JSON.stringify(favoriteCities));
   createOptions([currentCity]);
+  checkIfFavorite(currentCity);
   alert(`${currentCity} is added to favorites!`);
 }
 
@@ -179,7 +222,7 @@ function handleChangeCurrentWeather(e) {
   const chosenCity =
     e.target.value === "Favorites" ? "Vancouver" : e.target.value;
   fetchCurrentCity(chosenCity);
-  forecastNextFiveDays(chosenCity);
+  forecastNextFiveDays(chosenCity, 0);
 }
 
 starIcon.addEventListener("click", handleAddFavorite);
@@ -187,12 +230,27 @@ selected.addEventListener("change", handleChangeCurrentWeather);
 
 function handleTesting(e) {
   if (e.keyCode === 13) {
-    // console.log(inputValue.value);
     const enteredCity = inputValue.value.split(",")[0];
     fetchCurrentCity(enteredCity);
-    forecastNextFiveDays(enteredCity);
+    forecastNextFiveDays(enteredCity, 0);
+    inputValue.value = "";
   }
 }
 
-// inputValue.addEventListener("change", handleTesting);
+function handleRemoveFavorite() {
+  const removingCity = cityName.innerHTML;
+  const updatedFavoriteCities = favoriteCities.filter(
+    (city) => city !== removingCity
+  );
+  console.log(updatedFavoriteCities);
+  localStorage.setItem("favoriteCities", JSON.stringify(updatedFavoriteCities));
+  selected.innerHTML = `<option value="Favorites">Favorites</option>`;
+  if (updatedFavoriteCities.length > 0) {
+    createOptions(updatedFavoriteCities);
+  }
+  checkIfFavorite(removingCity);
+  alert(`${removingCity} has removed from favorites!`);
+}
+
 window.addEventListener("keyup", handleTesting);
+starIconFilled.addEventListener("click", handleRemoveFavorite);
