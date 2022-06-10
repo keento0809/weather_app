@@ -22,7 +22,7 @@ button {
 
 nav {
   height: 60px;
-  background-color: #1A5E99;
+  background-color: #1a5e99;
   display: flex;
   flex-direction: row;
   align-items: center;
@@ -54,7 +54,7 @@ nav .submitValue {
   transition: all 0.7s ease;
 }
 nav .submitValue:hover {
-  background-color: #01315B;
+  background-color: #01315b;
   color: white;
 }
 nav #favorites {
@@ -111,8 +111,9 @@ h1 {
   background-color: #00315b;
   border-radius: 50%;
   text-align: center;
-  min-width: 110px;
-  min-height: 110px;
+  width: 110px;
+  height: 110px;
+  margin: 0 auto;
 }
 
 #threeHour {

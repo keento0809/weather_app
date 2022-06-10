@@ -17,7 +17,6 @@ export function checkIfFavorite(val) {
   favoriteCities = citiesFromLocalStorage
     ? JSON.parse(citiesFromLocalStorage)
     : [];
-  console.log(favoriteCities);
   document.getElementById("starIconFilled").style.display = "none";
   document.getElementById("starIcon").style.display = "block";
 
@@ -66,17 +65,6 @@ function handleAddFavorite() {
     localStorage.getItem("favoriteCities")
   );
   currentCity = cityName.innerHTML;
-  console.log(currentCity);
-  // if (citiesFromLocalStorage) {
-  //   let count = 0;
-  //   while (count < citiesFromLocalStorage.length) {
-  //     if (citiesFromLocalStorage[count] === currentCity) {
-  //       alert("You've already added this city.");
-  //       return;
-  //     }
-  //     count++;
-  //   }
-  // }
   favoriteCities = [...favoriteCities, currentCity];
   localStorage.setItem("favoriteCities", JSON.stringify(favoriteCities));
   createOptions([currentCity]);
@@ -89,7 +77,7 @@ function handleRemoveFavorite() {
   const updatedFavoriteCities = favoriteCities.filter(
     (city) => city !== removingCity
   );
-  console.log(updatedFavoriteCities);
+  console.log(typeof updatedFavoriteCities);
   localStorage.setItem("favoriteCities", JSON.stringify(updatedFavoriteCities));
   selected.innerHTML = `<option value="Favorites">Favorites</option>`;
   if (updatedFavoriteCities.length > 0) {
@@ -99,15 +87,5 @@ function handleRemoveFavorite() {
   alert(`${removingCity} has removed from favorites!`);
 }
 
-// function handleTesting(e) {
-//   if (e.keyCode === 13) {
-//     const enteredCity = inputValue.value.split(",")[0];
-//     fetchCurrentCity(enteredCity);
-//     forecastFiveDaysAndAThreeGap(enteredCity, 0);
-//     inputValue.value = "";
-//   }
-// }
-
-// window.addEventListener("keyup", handleTesting);
 starIcon.addEventListener("click", handleAddFavorite);
 starIconFilled.addEventListener("click", handleRemoveFavorite);
