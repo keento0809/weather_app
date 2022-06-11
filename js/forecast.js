@@ -25,6 +25,7 @@ export async function forecastFiveDaysAndAThreeGap(locationData, span) {
   for (let i = 0; i < data.list.length; i += 8) {
     dataForNextFiveDays.push(data.list[i]);
   }
+
   const num = Number(span) + Number(span * 7);
   const area = 8 + (Number(span * 7) + Number(span));
   for (let i = num; i < area; i++) {
