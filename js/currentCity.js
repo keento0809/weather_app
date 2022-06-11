@@ -8,6 +8,7 @@ const description = document.querySelector(".description");
 const temperature = document.querySelector(".temperature");
 const weatherIcon = document.querySelector(".weatherIcon");
 const selected = document.querySelector("#favorites");
+const searchInput = document.getElementById("pac-input");
 
 let currentCity = "";
 let favoriteCities = [];
@@ -17,10 +18,27 @@ export async function fetchCurrentCity(val) {
     alert("Please insert a City name!");
     return;
   }
+
+  // test
+  // const place = autoComplete.getPlaces();
+  // console.log("動いてる？？", place);
+
   const weather = await fetch(
     `https://api.openweathermap.org/data/2.5/weather?q=${val}&appid=${CURRENT_WEATHER}&units=metric`
   );
-  const data = await weather.json();
+
+  // test
+  const locationForWeather = await weather.json();
+  const latlon = {
+    lat: locationForWeather.coord.lat,
+    lon: locationForWeather.coord.lon,
+  };
+  const weatherData = await fetch(
+    `https://api.openweathermap.org/data/2.5/weather?lat=${latlon.lat}&lon=${latlon.lon}&appid=${CURRENT_WEATHER}&units=metric`
+  );
+
+  const data = await weatherData.json();
+  console.log(data);
 
   checkIfFavorite(val);
 
