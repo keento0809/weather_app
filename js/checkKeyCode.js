@@ -6,6 +6,7 @@ const inputValue = document.getElementById("pac-input");
 export function handleTesting(e) {
   if (e.keyCode === 13) {
     let enteredCity = inputValue.value.split(",")[0];
+    console.log(inputValue.value.split(" ")[0]);
     // console.log(
     //   enteredCity.substring(enteredCity.length - 3, enteredCity.length),
     //   enteredCity

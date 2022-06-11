@@ -19,13 +19,28 @@ export async function fetchCurrentCity(val) {
     return;
   }
 
-  // test
-  // const place = autoComplete.getPlaces();
-  // console.log("動いてる？？", place);
-
   const weather = await fetch(
     `https://api.openweathermap.org/data/2.5/weather?q=${val}&appid=${CURRENT_WEATHER}&units=metric`
   );
+
+  // test geolocation
+  let currentLocation;
+  // Try HTML5 geolocation.
+  if (navigator.geolocation) {
+    navigator.geolocation.getCurrentPosition(
+      (position) => {
+        const pos = {
+          lat: position.coords.latitude,
+          lng: position.coords.longitude,
+        };
+        currentLocation = pos;
+      },
+      () => {
+        console.log("Failed.");
+      }
+    );
+  }
+  console.log(currentLocation);
 
   // test
   const locationForWeather = await weather.json();
@@ -34,7 +49,11 @@ export async function fetchCurrentCity(val) {
     lon: locationForWeather.coord.lon,
   };
   const weatherData = await fetch(
-    `https://api.openweathermap.org/data/2.5/weather?lat=${latlon.lat}&lon=${latlon.lon}&appid=${CURRENT_WEATHER}&units=metric`
+    `https://api.openweathermap.org/data/2.5/weather?lat=${
+      currentLocation ? currentLocation.lat : latlon.lat
+    }&lon=${
+      currentLocation ? currentLocation.lng : latlon.lon
+    }&appid=${CURRENT_WEATHER}&units=metric`
   );
 
   const data = await weatherData.json();
