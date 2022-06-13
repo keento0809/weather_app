@@ -18,7 +18,6 @@ export async function forecastFiveDaysAndAThreeGap(locationData, dateOfFuture) {
     `https://api.openweathermap.org/data/2.5/forecast?lat=${latlon.lat}&lon=${latlon.lon}&appid=${CURRENT_WEATHER}&units=metric`
   );
   const data = await weather.json();
-  console.log(data);
 
   const dataForNextFiveDays = [];
   const dataForThreeHourGap = [];

@@ -69,6 +69,11 @@ h1 {
   line-height: 46px;
   font-weight: 600;
 }
+@media only screen and (max-width: 375px) {
+  h1 {
+    font-size: 47px;
+  }
+}
 
 .temperature {
   font-size: 60px;
@@ -107,7 +112,7 @@ h1 {
     flex-direction: column-reverse;
   }
 }
-#currentWeather .weatherIcon {
+#currentWeather .img-icon {
   background-color: #00315b;
   border-radius: 50%;
   text-align: center;
@@ -134,7 +139,7 @@ h1 {
   border-radius: 0 50px;
   padding: 16px 30px;
   margin: 0 5px;
-  min-width: 117px;
+  max-width: 105px;
 }
 @media only screen and (max-width: 375px) {
   #threeHour .wheather3h {
