@@ -3,7 +3,7 @@ import CURRENT_WEATHER from "../apikeys.js";
 
 const cityName = document.querySelector(".cityName");
 
-export async function forecastFiveDaysAndAThreeGap(locationData, span) {
+export async function forecastFiveDaysAndAThreeGap(locationData, dateOfFuture) {
   const location = await fetch(
     `https://api.openweathermap.org/data/2.5/weather?q=${
       locationData ? locationData : "Vancouver"
@@ -18,6 +18,7 @@ export async function forecastFiveDaysAndAThreeGap(locationData, span) {
     `https://api.openweathermap.org/data/2.5/forecast?lat=${latlon.lat}&lon=${latlon.lon}&appid=${CURRENT_WEATHER}&units=metric`
   );
   const data = await weather.json();
+  console.log(data);
 
   const dataForNextFiveDays = [];
   const dataForThreeHourGap = [];
@@ -26,16 +27,23 @@ export async function forecastFiveDaysAndAThreeGap(locationData, span) {
     dataForNextFiveDays.push(data.list[i]);
   }
 
-  const num = Number(span) + Number(span * 7);
-  const area = 8 + (Number(span * 7) + Number(span));
-  for (let i = num; i < area; i++) {
-    dataForThreeHourGap.push(data.list[i]);
+  if (dateOfFuture === "") {
+    for (let i = 0; i < 8; i++) {
+      dataForThreeHourGap.push(data.list[i]);
+    }
+  } else {
+    for (let i = 0; i < data.list.length; i++) {
+      if (data.list[i].dt_txt.split(" ")[0] === dateOfFuture)
+        dataForThreeHourGap.push(data.list[i]);
+    }
   }
 
   const fiveDaysContent = dataForNextFiveDays
     .map((day, index) => {
       return `
-          <div class="wheather dayWeather" key=${index} id=${index}>
+          <div class="wheather dayWeather" key=${index} id=${
+        day.dt_txt.split(" ")[0]
+      }>
               <img src="http://openweathermap.org/img/wn/${
                 day.weather[0].icon
               }@2x.png" />
@@ -55,15 +63,13 @@ export async function forecastFiveDaysAndAThreeGap(locationData, span) {
   fiveDays.innerHTML = fiveDaysContent;
 
   function handleChangeDate() {
-    console.log(cityName.innerHTML);
-    console.log(this.id);
     forecastFiveDaysAndAThreeGap(cityName.innerHTML, this.id);
   }
 
   const nextFiveDays = document.querySelectorAll(".dayWeather");
-  nextFiveDays.forEach((day) =>
-    day.addEventListener("click", handleChangeDate)
-  );
+  nextFiveDays.forEach((day) => {
+    day.addEventListener("click", handleChangeDate);
+  });
 
   const threeHourGapContent = dataForThreeHourGap
     .map((data, index) => {

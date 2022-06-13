@@ -25,7 +25,7 @@ export function handleTesting(e) {
     )
       enteredCity = enteredCity.substring(0, enteredCity.length - 3);
     fetchCurrentCity(enteredCity);
-    forecastFiveDaysAndAThreeGap(enteredCity, 0);
+    forecastFiveDaysAndAThreeGap(enteredCity, "");
     inputValue.value = "";
   }
 }
