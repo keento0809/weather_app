@@ -57,7 +57,6 @@ export async function fetchCurrentCity(val) {
   );
 
   const data = await weatherData.json();
-  console.log(data);
 
   checkIfFavorite(val);
 
@@ -79,7 +78,7 @@ function handleChangeCurrentWeather(e) {
   const chosenCity =
     e.target.value === "Favorites" ? "Vancouver" : e.target.value;
   fetchCurrentCity(chosenCity);
-  forecastFiveDaysAndAThreeGap(chosenCity, 0);
+  forecastFiveDaysAndAThreeGap(chosenCity, "");
 }
 
 selected.addEventListener("change", handleChangeCurrentWeather);

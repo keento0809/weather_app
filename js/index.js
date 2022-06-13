@@ -34,7 +34,7 @@ submitBtn.addEventListener("click", async function () {
   fetchCurrentCity(inputValue.value);
 
   const locationData = inputValue.value;
-  forecastFiveDaysAndAThreeGap(locationData, 0);
+  forecastFiveDaysAndAThreeGap(locationData, "");
 });
 
 window.addEventListener("DOMContentLoaded", () => {
@@ -42,7 +42,7 @@ window.addEventListener("DOMContentLoaded", () => {
   currentCity = "Vancouver";
   document.getElementById("starIcon").style.display = "block";
   fetchCurrentCity(currentCity);
-  forecastFiveDaysAndAThreeGap(currentCity, 0);
+  forecastFiveDaysAndAThreeGap(currentCity, "");
 
   // check if data exists in localStorage or not
   const citiesFromLocalStorage = localStorage.getItem("favoriteCities");
