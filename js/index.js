@@ -77,7 +77,6 @@ function handleRemoveFavorite() {
   const updatedFavoriteCities = favoriteCities.filter(
     (city) => city !== removingCity
   );
-  console.log(typeof updatedFavoriteCities);
   localStorage.setItem("favoriteCities", JSON.stringify(updatedFavoriteCities));
   selected.innerHTML = `<option value="Favorites">Favorites</option>`;
   if (updatedFavoriteCities.length > 0) {

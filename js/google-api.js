@@ -9,7 +9,6 @@ function googleApi() {
 
   window.addEventListener("DOMContentLoaded", () => {
     // Try HTML5 geolocation.
-    console.log("Geolocationやでえ〜");
     if (navigator.geolocation) {
       navigator.geolocation.getCurrentPosition(
         (position) => {
@@ -17,10 +16,8 @@ function googleApi() {
             lat: position.coords.latitude,
             lng: position.coords.longitude,
           };
-          console.log(pos);
         },
         () => {
-          console.log("Failed to get location data.");
         }
       );
     }

@@ -6,9 +6,9 @@ import { handleTesting } from "./checkKeyCode.js";
 const cityName = document.querySelector(".cityName");
 const description = document.querySelector(".description");
 const temperature = document.querySelector(".temperature");
-const weatherIcon = document.querySelector(".weatherIcon");
 const selected = document.querySelector("#favorites");
 const searchInput = document.getElementById("pac-input");
+const icon = document.querySelector(".img-icon")
 
 let currentCity = "";
 let favoriteCities = [];
@@ -36,11 +36,9 @@ export async function fetchCurrentCity(val) {
         currentLocation = pos;
       },
       () => {
-        console.log("Failed.");
       }
     );
   }
-  console.log(currentLocation);
 
   // test
   const locationForWeather = await weather.json();
@@ -65,7 +63,7 @@ export async function fetchCurrentCity(val) {
   currentCity = nameValue;
 
   const iconValue = data.weather[0].icon;
-  weatherIcon.innerHTML = `<img src="http://openweathermap.org/img/wn/${iconValue}@2x.png">`;
+  icon.src = `http://openweathermap.org/img/wn/${iconValue}@2x.png`;
 
   const temperatureValue = data.main.temp;
   temperature.innerHTML = temperatureValue + " &#8451";
