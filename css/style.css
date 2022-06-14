@@ -9,7 +9,7 @@
 }
 
 body {
-  background-image: url(/img/sky.jpeg);
+  background-image: url(../img/sky.jpeg);
   background-size: cover;
   background-attachment: fixed;
   padding-bottom: 20px;
